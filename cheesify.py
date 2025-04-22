@@ -18,11 +18,10 @@ parser.add_argument("val1", type=float, nargs='?', help="The first value")
 parser.add_argument("val2", type=float, nargs='?', help="The second value")
 parser.add_argument("val3", type=float, nargs='?', help="The third value")
 
-
 args = parser.parse_args()
 
 
-def play_tone(frequency=400, duration=1.0, sample_rate=44100, volume=0.5):
+def play_tone(frequency=400, duration=1.0, sample_rate=44100, volume=1.0):
     t = np.linspace(0, duration, int(sample_rate * duration), False)
     tone = np.sin(frequency * 2 * np.pi * t) * volume
     sd.play(tone, sample_rate)
@@ -49,15 +48,11 @@ if args.bell:
     print(time)
     play_tone(frequency=494, duration=time)
 
+
 def require_args(num: int):
     if num > num_args():
         raise argparse.ArgumentTypeError(f"Too few arguments, you need {num} arg{"s" if num > 1 else ""}")
-    # if num == 3 and num_args() < 3:
-    #     raise OSError('You must provide three values')
-    # elif num == 2 and num_args() < 2:
-    #     raise OSError('You must provide two values')
-    # elif num == 1 and num_args() < 1:
-    #     raise OSError('You must provide one value')
+
 
 def num_args() -> int:
     if args.val1:
@@ -67,6 +62,8 @@ def num_args() -> int:
             return 2
         return 1
     return 0
+
+    # return [args.val1, args.val2, args.val3].index(None) + 1
 
 
 if args.add:
