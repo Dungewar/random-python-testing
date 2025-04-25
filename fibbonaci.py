@@ -1,3 +1,5 @@
+import sys
+import time
 from pickletools import long4
 
 
@@ -25,5 +27,11 @@ def fibb3(n: int) -> int:
 
 
 print(flush=False)
-for i in range(0, 10000):
-    print(f"i={i} fibb={fibb3(i)}")
+# for i in range(0, 10000):
+
+start = int(round(time.time() * 1000))
+i = 1000000
+sys.set_int_max_str_digits(2000000)
+print(f"i={i} fibb={fibb3(i)}")
+end = int(round(time.time() * 1000))
+print(f'Time taken: {end - start}ms')
