@@ -46,9 +46,9 @@ v = 0
 prev_distance = -1
 while True:
     x, y, distance, profile = simulate(v)
-    print(v, ": ", distance)
+    print(f"Initial velocity: {v:7.3f}, Min distance: {(numpy.sqrt(distance)):7.5f}")
     if distance < ACCEPTABLE_DISTANCE or distance == prev_distance: # acceptable or best possible approximation
-        print(x, y, distance)
+        print(f"----- Best case -----\nX: {x:7.5f}, X: {y:7.5f}, Distance: {distance:7.5f}")
         break
     if y < DEST_Y: # undershoots
         v_bound_min = v
