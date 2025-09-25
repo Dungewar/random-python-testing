@@ -66,14 +66,15 @@ if args.belldelay or args.belltime:
         if target_datetime < current_time:
             target_datetime += timedelta(days=1)
 
-        sleep_seconds = (target_datetime - current_time).total_seconds()
+        sleep_seconds = (target_datetime - current_time).total_seconds() - 1
         print(f"Sleeping for {sleep_seconds} seconds")
         time.sleep(sleep_seconds)
 
     print("MAX VOLUME! 🧀🔊")
     set_volume(100)
+    time.sleep(1) # to give time for system to set itself
     print("Playing bells...")
-    play_tone(frequency=494, duration=3)
+    play_tone(frequency=493.88, duration=3)
     print("SHUTTING DOWN VOLUME 🧀🤫")
     set_volume(0)
 
